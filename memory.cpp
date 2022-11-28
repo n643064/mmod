@@ -1,6 +1,4 @@
 #include "memory.hpp"
-#include <sys/uio.h>
-#include <unistd.h>
 
 void readm(pid_t pid, void* address, void* buffer, size_t size)
 {
@@ -25,6 +23,5 @@ void writem(pid_t pid, void* address, void* buffer, size_t size)
 	remote.iov_base = address;
 	remote.iov_len = size;
 
-	process_vm_readv(pid, &local, 1, &remote, 1, 0);
+	process_vm_writev(pid, &local, 1, &remote, 1, 0);
 }
-

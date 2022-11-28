@@ -1,7 +1,8 @@
 #ifndef MEMORY_HPP
 #define MEMORY_HPP
-#include <cstdlib>
-
+#include <cstdint>
+#include <sys/uio.h>
+#include "map.hpp"
 typedef struct
 {
 	void* base;
@@ -11,4 +12,6 @@ typedef struct
 
 void readm(pid_t pid, void* address, void* buffer, size_t size);
 void writem(pid_t pid, void* address, void* buffer, size_t size);
+
+
 #endif
