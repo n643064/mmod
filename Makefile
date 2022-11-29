@@ -6,17 +6,21 @@ CPP_OBJECTS=main.o memory.o util.o
 
 all: clean run
 
-clean:
-	rm -f *.o mmod
+clean: build
+	rm -f build/* mmod target
 
-%.o: %.cpp
-	$(CPP) $(CPPFLAGS) $^ -c -o $@
+build:
+	mkdir build
+
+%.o: src/%.cpp
+	$(CPP) $(CPPFLAGS) $^ -c -o build/$@
+
 
 mmod: $(CPP_OBJECTS)
-	$(CPP) $(CPP_OBJECTS) -o $@ $(LFLAGS)
-
+	cd build && $(CPP) $(CPP_OBJECTS) -o ../$@ $(LFLAGS)
+	
 target:
-	gcc target.c -o target
+	gcc src/target.c -o target
 
 run: mmod target
 	./target > /dev/null & ./mmod $$(pidof target)
