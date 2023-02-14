@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wwrite-strings"
 using namespace std;
 
-#define OFFSET 0x403c
+#define OFFSET 0x4044
 
 typedef struct
 {
@@ -33,15 +33,15 @@ int main(int argc, char** argv)
 	}
 	getline(mapf, read);
 	string base = "0x" + read.substr(0, read.find("-"));
-	cout << base << "\n";
 	unsigned long int a = stoul(base, nullptr, 16);
-	printf("%x\n", a);
 	void* address = a + OFFSET;
-	cout << address << "\n";
 
 
 
 	Data d;
 	readm(pid, address, &d, sizeof(Data));
 	std::cout << d.x << "\n";
+	d.x = 100;
+	writem(pid, address, &d, sizeof(Data));
+
 }

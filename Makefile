@@ -27,7 +27,6 @@ test-target: clean target
 
 run: mmod target
 	./target & ./mmod $$(pidof target)
-	killall target
 
 test: main.o memory.o
 	g++ src/test.cpp src/memory.cpp -o test

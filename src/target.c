@@ -9,11 +9,12 @@ static void* p = &data;
 
 int main()
 {
-	data.x = 10;
+	data.x = 15;
 	printf("%x\n", p);
 	printf("%d\n", data.x);
-	for (;;)
+	while (data.x != 100)
 	{
 
 	}
+	printf("End\n");
 }
