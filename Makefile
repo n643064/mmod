@@ -1,7 +1,7 @@
 CPP=g++
-CPPFLAGS=-Wall -O2 -fpermissive
+CPPFLAGS=-Wall -O2 -fpermissive -std=c++17
 LFLAGS=-lm
-CPP_OBJECTS=main.o memory.o util.o
+CPP_OBJECTS=main.o map.o memory.o util.o
 
 
 all: clean run
@@ -22,6 +22,13 @@ mmod: $(CPP_OBJECTS)
 target:
 	gcc src/target.c -o target
 
+test-target: clean target
+	./target & killall target
+
 run: mmod target
-	./target > /dev/null & ./mmod $$(pidof target)
+	./target & ./mmod $$(pidof target)
 	killall target
+
+test: main.o memory.o
+	g++ src/test.cpp src/memory.cpp -o test
+	
