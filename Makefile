@@ -1,7 +1,7 @@
 CPP=g++
 CPPFLAGS=-Wall -O2 -fpermissive -std=c++17
 LFLAGS=-lm
-CPP_OBJECTS=main.o map.o memory.o util.o
+CPP_OBJECTS=main.o memory.o util.o
 
 
 all: clean run

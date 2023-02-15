@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 {
 	if (argc < 2)
 	{
-		std::cout << "Usage: ./mmod [flags] [pid]\n";
+		std::cout << "Usage: ./mmod [pid]\n";
 		exit(0);
 	}
 	pid_t pid = atoi(argv[1]);
