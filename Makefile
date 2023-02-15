@@ -15,7 +15,6 @@ build:
 %.o: src/%.cpp
 	$(CPP) $(CPPFLAGS) $^ -c -o build/$@
 
-
 mmod: $(CPP_OBJECTS)
 	cd build && $(CPP) $(CPP_OBJECTS) -o ../$@ $(LFLAGS)
 	
@@ -27,7 +26,3 @@ test-target: clean target
 
 run: mmod target
 	./target & ./mmod $$(pidof target)
-
-test: main.o memory.o
-	g++ src/test.cpp src/memory.cpp -o test
-	
